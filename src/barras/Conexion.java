@@ -5,7 +5,7 @@
 /*MODIFICACION CHIDA*/
 package barras;
 import java.sql.*;
- 
+
 public class Conexion {
 private Connection conexion;
 static String bd="sca";
