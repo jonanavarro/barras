@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-/*MODIFICACION CHIDA*/
+/*MODIFICACION CHIDA 123*/
 package barras;
 import java.sql.*;
 
