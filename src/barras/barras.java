@@ -23,8 +23,11 @@ public class barras {
         } catch (InterruptedException ex) {
             Logger.getLogger(barras.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Conexion con = new Conexion();
-        con.establecerConexion();
+        //Conexion con = new Conexion();
+        //con.establecerConexion();
+        BD base = new BD();
+        base.conexion();
+        
         new principal().setVisible(true);
         
     }
