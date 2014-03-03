@@ -5,6 +5,7 @@
 /*MODIFICACION chida*/
 package barras;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class Conexion {
 private Connection conexion;
@@ -25,7 +26,8 @@ public void establecerConexion(){
         System.out.println("Conexion realizada amigos !");
     }
     catch(Exception e){
-    //System.out.println("Imposible realizar conexion con la BD");
+    System.out.println("Imposible realizar conexion con la BD");
+    JOptionPane.showMessageDialog(null, "no se hizo la conexion");
     e.printStackTrace();
     }
 }
