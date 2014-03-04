@@ -16,6 +16,10 @@ public class inicio extends javax.swing.JFrame {
      */
     public inicio() {
         initComponents();
+        jbtnGuardar.setEnabled(false);
+        jbtnAlta.setEnabled(false);
+        jbtnBaja.setEnabled(false);
+        
     }
 
     /**
@@ -38,11 +42,11 @@ public class inicio extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jbtnGuardar = new javax.swing.JButton();
+        jbtnAlta = new javax.swing.JButton();
+        jbtnBaja = new javax.swing.JButton();
+        jbtnImprimir = new javax.swing.JButton();
+        jbtnPase = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -93,28 +97,33 @@ public class inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Guardar");
-
-        jButton6.setText("Alta alumno");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jbtnGuardar.setText("Guardar");
+        jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jbtnGuardarActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Baja alumno");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jbtnAlta.setText("Alta alumno");
+        jbtnAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jbtnAltaActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Imprimir");
-
-        jButton9.setText("Pase de lista");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jbtnBaja.setText("Baja alumno");
+        jbtnBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                jbtnBajaActionPerformed(evt);
+            }
+        });
+
+        jbtnImprimir.setText("Imprimir");
+
+        jbtnPase.setText("Pase de lista");
+        jbtnPase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPaseActionPerformed(evt);
             }
         });
 
@@ -148,10 +157,12 @@ public class inicio extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setMinWidth(90);
-        jTable1.getColumnModel().getColumn(0).setMaxWidth(90);
-        jTable1.getColumnModel().getColumn(2).setMinWidth(90);
-        jTable1.getColumnModel().getColumn(2).setMaxWidth(90);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(90);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(90);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(90);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,15 +175,15 @@ public class inicio extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
+                        .addComponent(jbtnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(jButton6)
+                        .addComponent(jbtnAlta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7)
+                        .addComponent(jbtnBaja)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)
+                        .addComponent(jbtnPase)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8))
+                        .addComponent(jbtnImprimir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
@@ -199,11 +210,11 @@ public class inicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(jbtnGuardar)
+                    .addComponent(jbtnAlta)
+                    .addComponent(jbtnBaja)
+                    .addComponent(jbtnImprimir)
+                    .addComponent(jbtnPase))
                 .addContainerGap())
         );
 
@@ -256,6 +267,9 @@ public class inicio extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new editar().setVisible(true);
+        jbtnGuardar.setEnabled(true);
+        jbtnAlta.setEnabled(true);
+        jbtnBaja.setEnabled(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -263,25 +277,32 @@ public class inicio extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jbtnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAltaActionPerformed
         new grupos().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jbtnAltaActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jbtnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBajaActionPerformed
         new BajaAlumnos().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jbtnBajaActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jbtnPaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPaseActionPerformed
         new PantallaInicio().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_jbtnPaseActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new principal().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+        // TODO add your handling code here:
+        jbtnGuardar.setEnabled(false);
+        jbtnAlta.setEnabled(false);
+        jbtnBaja.setEnabled(false);
+    }//GEN-LAST:event_jbtnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,11 +343,6 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -336,5 +352,10 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbtnAlta;
+    private javax.swing.JButton jbtnBaja;
+    private javax.swing.JButton jbtnGuardar;
+    private javax.swing.JButton jbtnImprimir;
+    private javax.swing.JButton jbtnPase;
     // End of variables declaration//GEN-END:variables
 }
