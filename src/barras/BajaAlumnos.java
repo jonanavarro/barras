@@ -16,7 +16,9 @@ public class BajaAlumnos extends javax.swing.JFrame {
      * Creates new form BajaAlumnos
      */
     public BajaAlumnos() {
+        super ("Bajas");
         initComponents();
+        
     }
 
     /**

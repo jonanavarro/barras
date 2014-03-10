@@ -16,6 +16,7 @@ public class PantallaInicio extends javax.swing.JFrame {
      * Creates new form PantallaInicio
      */
     public PantallaInicio() {
+        super("Asistencia");
         initComponents();
     }
 

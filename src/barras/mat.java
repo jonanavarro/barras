@@ -15,6 +15,7 @@ public class mat extends javax.swing.JFrame {
      * Creates new form mat
      */
     public mat() {
+        super("Agregar Materia");
         initComponents();
     }
 

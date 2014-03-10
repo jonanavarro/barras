@@ -15,6 +15,7 @@ public class nusuario extends javax.swing.JFrame {
      * Creates new form nusuario
      */
     public nusuario() {
+        super("Agregar usuario");
         initComponents();
     }
 

@@ -15,6 +15,7 @@ public class editar extends javax.swing.JFrame {
      * Creates new form editar
      */
     public editar() {
+        super ("Confirmar Contraseña");
         initComponents();
     }
 

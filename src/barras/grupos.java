@@ -15,6 +15,7 @@ public class grupos extends javax.swing.JFrame {
      * Creates new form grupos
      */
     public grupos() {
+        super("Agregar alumnos");
         initComponents();
     }
 

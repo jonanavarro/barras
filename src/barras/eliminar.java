@@ -15,6 +15,7 @@ public class eliminar extends javax.swing.JFrame {
      * Creates new form eliminar
      */
     public eliminar() {
+        super("Eliminar");
         initComponents();
     }
 

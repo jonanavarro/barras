@@ -15,6 +15,7 @@ public class inicio extends javax.swing.JFrame {
      * Creates new form inicio
      */
     public inicio() {
+        super("Lista");
         initComponents();
         jbtnGuardar.setEnabled(false);
         jbtnAlta.setEnabled(false);
@@ -71,7 +72,7 @@ public class inicio extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel1.setText("Consultar materia");
 
-        jButton3.setText("Cerrar secion");
+        jButton3.setText("Cerrar sesion");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
