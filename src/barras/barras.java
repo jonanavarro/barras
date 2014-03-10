@@ -2,6 +2,8 @@ package barras;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 /*
  * To change this template, choose Tools | Templates
@@ -25,6 +27,17 @@ public class barras {
         }
         //Conexion con = new Conexion();
         //con.establecerConexion();
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+// If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+        
         BD base = new BD();
         base.conexion();
         
