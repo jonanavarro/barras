@@ -41,7 +41,9 @@ public class barras {
         BD base = new BD();
         base.conexion();
         
-        new principal().setVisible(true);
+        principal p =new principal();
+        p.setLocationRelativeTo(null);
+        p.setVisible(true);
         
     }
 }

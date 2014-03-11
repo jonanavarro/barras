@@ -157,12 +157,17 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new nusuario().setVisible(true);
+        nusuario nuevo = new nusuario();
+        nuevo.setLocationRelativeTo(this);
+        nuevo.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new inicio().setVisible(true);
+        inicio ini = new inicio();
+        ini.setLocationRelativeTo(this);
+        ini.setVisible(true);
+        
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

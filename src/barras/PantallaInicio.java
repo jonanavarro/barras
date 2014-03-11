@@ -152,7 +152,9 @@ public class PantallaInicio extends javax.swing.JFrame {
     private void jbtnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnListoActionPerformed
         // TODO add your handling code here:
         inicio llamada = new inicio();
-        llamada.show();
+        llamada.setLocationRelativeTo(this);
+        llamada.setVisible(true);
+        
         dispose();
     }//GEN-LAST:event_jbtnListoActionPerformed
 
