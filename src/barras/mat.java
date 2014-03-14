@@ -17,6 +17,7 @@ public class mat extends javax.swing.JFrame {
     public mat() {
         super("Agregar Materia");
         initComponents();
+        
     }
 
     /**
@@ -29,8 +30,8 @@ public class mat extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jrdSemanal = new javax.swing.JRadioButton();
-        jrdSabatino = new javax.swing.JRadioButton();
+        jrbSemanal = new javax.swing.JRadioButton();
+        jrbSabatino = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -42,26 +43,26 @@ public class mat extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jtxtMateria = new javax.swing.JTextField();
+        jtxtIdMateria = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modalidad", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
 
-        jrdSemanal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jrdSemanal.setText("Semanal");
-        jrdSemanal.addActionListener(new java.awt.event.ActionListener() {
+        jrbSemanal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jrbSemanal.setText("Semanal");
+        jrbSemanal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrdSemanalActionPerformed(evt);
+                jrbSemanalActionPerformed(evt);
             }
         });
 
-        jrdSabatino.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jrdSabatino.setText("Sabatino");
-        jrdSabatino.addActionListener(new java.awt.event.ActionListener() {
+        jrbSabatino.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jrbSabatino.setText("Sabatino");
+        jrbSabatino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrdSabatinoActionPerformed(evt);
+                jrbSabatinoActionPerformed(evt);
             }
         });
 
@@ -71,17 +72,17 @@ public class mat extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(jrdSemanal)
+                .addComponent(jrbSemanal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
-                .addComponent(jrdSabatino)
+                .addComponent(jrbSabatino)
                 .addGap(60, 60, 60))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrdSemanal)
-                    .addComponent(jrdSabatino))
+                    .addComponent(jrbSemanal)
+                    .addComponent(jrbSabatino))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -172,9 +173,9 @@ public class mat extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("ID materia:");
 
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jtxtMateria.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jtxtIdMateria.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -186,11 +187,11 @@ public class mat extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
+                        .addComponent(jtxtMateria))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(105, 105, 105)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
+                        .addComponent(jtxtIdMateria, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -199,11 +200,11 @@ public class mat extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtIdMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -237,19 +238,19 @@ public class mat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jrdSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrdSemanalActionPerformed
+    private void jrbSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSemanalActionPerformed
         // TODO add your handling code here:
-        if(jrdSemanal.isSelected()){
-            jrdSabatino.setSelected(false);
+        if(jrbSemanal.isSelected()){
+            jrbSabatino.setSelected(false);
         }
-    }//GEN-LAST:event_jrdSemanalActionPerformed
+    }//GEN-LAST:event_jrbSemanalActionPerformed
 
-    private void jrdSabatinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrdSabatinoActionPerformed
+    private void jrbSabatinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSabatinoActionPerformed
         // TODO add your handling code here:
-        if(jrdSabatino.isSelected()){
-            jrdSemanal.setSelected(false);
+        if(jrbSabatino.isSelected()){
+            jrbSemanal.setSelected(false);
         }
-    }//GEN-LAST:event_jrdSabatinoActionPerformed
+    }//GEN-LAST:event_jrbSabatinoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new inicio().setVisible(true);
@@ -309,11 +310,11 @@ public class mat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JRadioButton jrdSabatino;
-    private javax.swing.JRadioButton jrdSemanal;
+    private javax.swing.JRadioButton jrbSabatino;
+    private javax.swing.JRadioButton jrbSemanal;
+    private javax.swing.JTextField jtxtIdMateria;
+    private javax.swing.JTextField jtxtMateria;
     // End of variables declaration//GEN-END:variables
 }

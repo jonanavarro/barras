@@ -1,5 +1,7 @@
 package barras;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -29,31 +31,31 @@ public class principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbtnIngresar = new javax.swing.JButton();
+        jbtnNuevoUsuario = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        jpswPass = new javax.swing.JPasswordField();
+        jtxtUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnIngresar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnIngresar.setText("Ingresar");
+        jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnIngresarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton2.setText("Nuevo usuario");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnNuevoUsuario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnNuevoUsuario.setText("Nuevo usuario");
+        jbtnNuevoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnNuevoUsuarioActionPerformed(evt);
             }
         });
 
@@ -63,9 +65,9 @@ public class principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtnIngresar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(jbtnNuevoUsuario)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -73,8 +75,8 @@ public class principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jbtnIngresar)
+                    .addComponent(jbtnNuevoUsuario))
                 .addContainerGap())
         );
 
@@ -86,14 +88,14 @@ public class principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Usuario:");
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jpswPass.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jpswPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtxtUsuario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jtxtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtxtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtxtUsuarioActionPerformed(evt);
             }
         });
 
@@ -107,11 +109,11 @@ public class principal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(37, 37, 37)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
+                        .addComponent(jtxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField1)))
+                        .addComponent(jpswPass)))
                 .addGap(13, 13, 13))
         );
         jPanel2Layout.setVerticalGroup(
@@ -120,11 +122,11 @@ public class principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpswPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -152,24 +154,65 @@ public class principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtxtUsuarioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbtnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoUsuarioActionPerformed
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         nusuario nuevo = new nusuario();
         nuevo.setLocationRelativeTo(this);
         nuevo.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtnNuevoUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        inicio ini = new inicio();
-        ini.setLocationRelativeTo(this);
-        ini.setVisible(true);
+    private void jbtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresarActionPerformed
         
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String usr = jtxtUsuario.getText();
+        String pswd = jpswPass.getText();
+        
+        if(usr.isEmpty() && pswd.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña !","Atención",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        else if(usr.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese usuario !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(pswd.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese contraseña !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else if(BD.esValido(usr, pswd)){
+            
+            Sesion.usuarioActual = usr; 
+            
+            inicio ini = new inicio();
+            ini.setLocationRelativeTo(this);
+            ini.setVisible(true);
+        
+            dispose();
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Usuario o Contraseña inválidos !","Error",JOptionPane.ERROR_MESSAGE);
+
+        }
+        
+    }//GEN-LAST:event_jbtnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,13 +249,13 @@ public class principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbtnIngresar;
+    private javax.swing.JButton jbtnNuevoUsuario;
+    private javax.swing.JPasswordField jpswPass;
+    private javax.swing.JTextField jtxtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,10 +14,9 @@ import javax.swing.JOptionPane;
  * @author Jonathan
  */
 public class BD {
+    public static Connection con;
     
-    static Connection con;
-    
-    public void conexion(){
+    public static void conexion(){
         
         try {
             Class.forName("org.sqlite.JDBC");
@@ -32,21 +31,48 @@ public class BD {
         }
     }
     
-    public static void insertar(int num ,int tiposerv, int tiemposerv, int tllegada){
+    public static boolean esValido(String usuario, String pass){
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        String consulta;
+        boolean valido = false;
+        
+        consulta = "SELECT maestro FROM usuarios WHERE maestro =? AND"
+                + " password =?";
+        
         try {
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            ps.setString(2, pass);
+            rs = ps.executeQuery();    
             
-            PreparedStatement ps= con.prepareStatement("INSERT INTO Clientes(nocliente,"
-                    + "                                                      tiposervicio,"
-                    + "                                                      tiemposervicio,"
-                    + "                                                      horallegada)"
-                    + "                                 VALUES (?,?,?,?)");
+            if(rs.next()){
+                valido = true;
+            }
+            else{
+                valido = false;
+            }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return valido;
+        
+    }
+    
+    public static void insertarUsuario(String usuario, String pass){
+        try {
+            PreparedStatement ps;
+            String consulta;
             
-            ps.setInt(1, num);
-            ps.setInt(2, tiposerv);
-            ps.setInt(3, tiemposerv);
-            ps.setInt(4, tllegada);
+            consulta = "INSERT INTO usuarios VALUES(?,?)";
             
-            ps.execute();
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            ps.setString(2, pass);
+            ps.executeUpdate();
             
         } catch (SQLException ex) {
             Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,150 +81,31 @@ public class BD {
         
     }
     
-    public static void tiempoSalida(int h, int n){
+    public static boolean existeUsuario(String usuario){
         
-        try {
+            PreparedStatement ps;
+            ResultSet rs;
+            boolean valor =false;
             
-            PreparedStatement ps= con.prepareStatement("UPDATE Clientes"
-                    + "                                 SET horasalida =?"
-                    + "                                 WHERE nocliente=?");
+            String consulta;
+            consulta = "SELECT maestro FROM usuarios WHERE maestro =?";
             
-            ps.setInt(1, h);
-            ps.setInt(2, n);
+        try{    
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            rs = ps.executeQuery();
             
-            ps.execute();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void llegadaCaja(int n, int c){
-        
-        try{
-        
-        PreparedStatement ps= con.prepareStatement("UPDATE Clientes"
-                + "                             SET llegadaCaja = ?"
-                + "                             WHERE nocliente=?");
-        
-        ps.setInt(1, c);
-        ps.setInt(2, n);
-            
-        ps.execute();
-        }
-        
-        catch(SQLException ex){
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void atencionCaja(int n, int a){
-        
-        try{
-        
-        PreparedStatement ps= con.prepareStatement("UPDATE Clientes"
-                + "                             SET atencionCaja = ?"
-                + "                             WHERE nocliente=?");
-        
-        ps.setInt(1, a);
-        ps.setInt(2, n);
-            
-        ps.execute();
-        }
-        
-        catch(SQLException ex){
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void tiempoCaja(int n, int t){
-        
-        try{
-        
-        PreparedStatement ps= con.prepareStatement("UPDATE Clientes"
-                + "                             SET tiempoCaja = ?"
-                + "                             WHERE nocliente=?");
-        
-        ps.setInt(1, t);
-        ps.setInt(2, n);
-            
-        ps.execute();
-        }
-        
-        catch(SQLException ex){
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-   public static void salidaCaja(int n, int s){
-        
-        try{
-        
-        PreparedStatement ps= con.prepareStatement("UPDATE Clientes"
-                + "                             SET salidaCaja = ?"
-                + "                             WHERE nocliente=?");
-        
-        ps.setInt(1, s);
-        ps.setInt(2, n);
-            
-        ps.execute();
-        }
-        
-        catch(SQLException ex){
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    public static void tiempoAtencion(int h, int n){
-        
-        try {
-            
-            PreparedStatement ps= con.prepareStatement("UPDATE Clientes"
-                    + "                                 SET atencion =?"
-                    + "                                 WHERE nocliente=?");
-            
-            ps.setInt(1, h);
-            ps.setInt(2, n );
-            
-            ps.execute();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void borrarTodo(){
-        
-        try {
-            
-            PreparedStatement ps= con.prepareStatement("DELETE FROM CLIENTES");
-            
-            ps.execute();
-            con.close();
-            
+            if(rs.next()){
+                valor = true;
+            }
+            else{
+                valor = false;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }
-    
-    public static ResultSet obtenerRegistros(){
-        
-        ResultSet rs=null;
-        try {
-            
-            PreparedStatement ps= con.prepareStatement("SELECT * FROM CLIENTES Order by nocliente ASC");
-            rs=ps.executeQuery();
-            
-            return rs;
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return rs;
-        
+        return valor;
     }
     
 }

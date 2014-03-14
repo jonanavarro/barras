@@ -68,9 +68,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                  <Component id="jrdSemanal" min="-2" max="-2" attributes="0"/>
+                  <Component id="jrbSemanal" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="204" max="32767" attributes="0"/>
-                  <Component id="jrdSabatino" min="-2" max="-2" attributes="0"/>
+                  <Component id="jrbSabatino" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -79,8 +79,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jrdSemanal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jrdSabatino" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jrbSemanal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jrbSabatino" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -88,7 +88,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JRadioButton" name="jrdSemanal">
+        <Component class="javax.swing.JRadioButton" name="jrbSemanal">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -96,10 +96,10 @@
             <Property name="text" type="java.lang.String" value="Semanal"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrdSemanalActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbSemanalActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jrdSabatino">
+        <Component class="javax.swing.JRadioButton" name="jrbSabatino">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -107,7 +107,7 @@
             <Property name="text" type="java.lang.String" value="Sabatino"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrdSabatinoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbSabatinoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -268,12 +268,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" max="32767" attributes="0"/>
+                          <Component id="jtxtMateria" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                          <Component id="jTextField2" pref="340" max="32767" attributes="0"/>
+                          <Component id="jtxtIdMateria" pref="340" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -286,12 +286,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtxtMateria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtxtIdMateria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -315,14 +315,14 @@
             <Property name="text" type="java.lang.String" value="ID materia:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jtxtMateria">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="jtxtIdMateria">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>

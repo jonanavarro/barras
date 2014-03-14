@@ -1,5 +1,7 @@
 package barras;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -29,31 +31,31 @@ public class nusuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbtnAceptar = new javax.swing.JButton();
+        jbtnCancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jtxtUsuario = new javax.swing.JTextField();
+        jtxtPswd = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnAceptar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnAceptar.setText("Aceptar");
+        jbtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnAceptarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancelar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnCancelar.setText("Cancelar");
+        jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnCancelarActionPerformed(evt);
             }
         });
 
@@ -63,9 +65,9 @@ public class nusuario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtnAceptar)
                 .addGap(8, 8, 8)
-                .addComponent(jButton2)
+                .addComponent(jbtnCancelar)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -73,8 +75,8 @@ public class nusuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jbtnAceptar)
+                    .addComponent(jbtnCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -86,11 +88,11 @@ public class nusuario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Nombre de usuario:");
 
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtxtUsuario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jtxtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtxtPswd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jtxtPswd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -103,8 +105,8 @@ public class nusuario extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtUsuario)
+                    .addComponent(jtxtPswd, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -113,11 +115,11 @@ public class nusuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtPswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -145,21 +147,52 @@ public class nusuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        mat materia = new mat();
-        materia.setLocationRelativeTo(this);
-        materia.setVisible(true);
+    private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
         
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String usuario = jtxtUsuario.getText();
+        String pass = jtxtPswd.getText();
+        
+        if(usuario.isEmpty() && pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingresa un usuario y una contraseña !"
+            ,"Aviso",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(usuario.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingresa un usuario !"
+            ,"Aviso",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingresa una contraseña !"
+            ,"Aviso",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            
+            if(BD.existeUsuario(usuario)){
+                JOptionPane.showMessageDialog(this, "Ese usuario ya existe !",
+                        "Aviso", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                BD.insertarUsuario(usuario, pass);
+                
+                Sesion.usuarioActual = usuario;
+            
+                mat materia = new mat();
+                materia.setLocationRelativeTo(this);
+                materia.setVisible(true);
+                
+                
+                dispose();
+                
+            } 
+        }
+    }//GEN-LAST:event_jbtnAceptarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
         principal principal = new principal ();
         principal.setLocationRelativeTo(null);
         principal.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,13 +229,13 @@ public class nusuario extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbtnAceptar;
+    private javax.swing.JButton jbtnCancelar;
+    private javax.swing.JPasswordField jtxtPswd;
+    private javax.swing.JTextField jtxtUsuario;
     // End of variables declaration//GEN-END:variables
 }

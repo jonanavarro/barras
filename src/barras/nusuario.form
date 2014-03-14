@@ -60,9 +60,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbtnAceptar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbtnCancelar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -72,8 +72,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -81,7 +81,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jbtnAceptar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -89,10 +89,10 @@
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAceptarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jbtnCancelar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -100,7 +100,7 @@
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnCancelarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -125,8 +125,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField1" max="32767" attributes="0"/>
-                      <Component id="jPasswordField1" min="-2" pref="203" max="-2" attributes="0"/>
+                      <Component id="jtxtUsuario" max="32767" attributes="0"/>
+                      <Component id="jtxtPswd" min="-2" pref="203" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -138,12 +138,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtxtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtxtPswd" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -167,7 +167,7 @@
             <Property name="text" type="java.lang.String" value="Nombre de usuario:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="jtxtUsuario">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -175,7 +175,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        <Component class="javax.swing.JPasswordField" name="jtxtPswd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
