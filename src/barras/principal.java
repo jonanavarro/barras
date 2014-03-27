@@ -40,6 +40,11 @@ public class principal extends javax.swing.JFrame {
         jtxtUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -48,6 +53,11 @@ public class principal extends javax.swing.JFrame {
         jbtnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresarActionPerformed(evt);
+            }
+        });
+        jbtnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbtnIngresarKeyPressed(evt);
             }
         });
 
@@ -86,7 +96,7 @@ public class principal extends javax.swing.JFrame {
         jLabel2.setText("Contraseña:");
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Usuario:");
+        jLabel1.setText("Nombre de Tutor:");
 
         jpswPass.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jpswPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -106,14 +116,12 @@ public class principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(37, 37, 37)
-                        .addComponent(jtxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpswPass)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpswPass)
+                    .addComponent(jtxtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
                 .addGap(13, 13, 13))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,6 +190,7 @@ public class principal extends javax.swing.JFrame {
 
     private void jbtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresarActionPerformed
         
+        
         String usr = jtxtUsuario.getText();
         String pswd = jpswPass.getText();
         
@@ -213,6 +222,44 @@ public class principal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jbtnIngresarActionPerformed
+
+    private void jbtnIngresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtnIngresarKeyPressed
+        // TODO add your handling code here:
+        String usr = jtxtUsuario.getText();
+        String pswd = jpswPass.getText();
+        
+        if(usr.isEmpty() && pswd.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese usuario y contraseña !","Atención",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        else if(usr.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese usuario !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(pswd.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese contraseña !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else if(BD.esValido(usr, pswd)){
+            
+            Sesion.usuarioActual = usr; 
+            
+            inicio ini = new inicio();
+            ini.setLocationRelativeTo(this);
+            ini.setVisible(true);
+        
+            dispose();
+            
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Usuario o Contraseña inválidos !","Error",JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jbtnIngresarKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        System.out.println("hi");
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments

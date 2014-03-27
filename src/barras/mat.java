@@ -1,5 +1,12 @@
 package barras;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -10,7 +17,10 @@ package barras;
  * @author Regina
  */
 public class mat extends javax.swing.JFrame {
-
+    
+    Date horario;
+    String modalidad;
+    
     /**
      * Creates new form mat
      */
@@ -35,10 +45,10 @@ public class mat extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        jcbEntrada = new javax.swing.JComboBox();
+        jcbTolerancia = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jbtnGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -94,9 +104,14 @@ public class mat extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setText("Tolerancia");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", " " }));
+        jcbEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00" }));
+        jcbEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEntradaActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00:05", "00:10", "00:15", "00:20" }));
+        jcbTolerancia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00:05", "00:10", "00:15", "00:20" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,10 +121,10 @@ public class mat extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -121,18 +136,18 @@ public class mat extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnGuardar.setText("Guardar");
+        jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnGuardarActionPerformed(evt);
             }
         });
 
@@ -150,7 +165,7 @@ public class mat extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtnGuardar)
                 .addGap(26, 26, 26)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -160,7 +175,7 @@ public class mat extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jbtnGuardar)
                     .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -240,30 +255,75 @@ public class mat extends javax.swing.JFrame {
 
     private void jrbSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSemanalActionPerformed
         // TODO add your handling code here:
+        jrbSemanal.setSelected(true);
         if(jrbSemanal.isSelected()){
             jrbSabatino.setSelected(false);
+            modalidad = "Semanal";
         }
     }//GEN-LAST:event_jrbSemanalActionPerformed
 
     private void jrbSabatinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSabatinoActionPerformed
         // TODO add your handling code here:
+        jrbSabatino.setSelected(true);
         if(jrbSabatino.isSelected()){
             jrbSemanal.setSelected(false);
+            modalidad = "Sabatino";
         }
     }//GEN-LAST:event_jrbSabatinoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new inicio().setVisible(true);
+        
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        inicio ini = new inicio();
-        ini.setLocationRelativeTo(this);
-        ini.setVisible(true);
+    private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+
+        String entrada = (String)jcbEntrada.getSelectedItem();
+        String tolerancia = (String) jcbTolerancia.getSelectedItem();
+        String nombmat = jtxtMateria.getText();
+        String idMateria = jtxtIdMateria.getText();
+        String modalidad = this.modalidad;
         
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if(jtxtMateria.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre de materia" , "Ingresar Materia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else if (jtxtIdMateria.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese Id de materia" , "Ingresar Materia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else if(!jrbSemanal.isSelected() && !jrbSabatino.isSelected()){
+            JOptionPane.showMessageDialog(this, "Seleccione una modalidad" , "Ingresar Materia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else{
+            
+           
+            
+            if(BD.materiaDuplicada(idMateria+"-"+modalidad, Sesion.usuarioActual)){
+                JOptionPane.showMessageDialog(this, "Esa materia ya está registrada", "Atención" , JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+
+                BD.insertarMateria(idMateria+"-"+modalidad, nombmat, modalidad, entrada, tolerancia,Sesion.usuarioActual);
+            
+                inicio ini = new inicio();
+                ini.setLocationRelativeTo(this);
+                ini.setVisible(true);
+        
+                dispose();
+            }
+            
+        }
+        
+        
+          
+        
+    }//GEN-LAST:event_jbtnGuardarActionPerformed
+
+    private void jcbEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEntradaActionPerformed
+        
+    }//GEN-LAST:event_jcbEntradaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,10 +360,7 @@ public class mat extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -312,6 +369,9 @@ public class mat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton jbtnGuardar;
+    private javax.swing.JComboBox jcbEntrada;
+    private javax.swing.JComboBox jcbTolerancia;
     private javax.swing.JRadioButton jrbSabatino;
     private javax.swing.JRadioButton jrbSemanal;
     private javax.swing.JTextField jtxtIdMateria;
