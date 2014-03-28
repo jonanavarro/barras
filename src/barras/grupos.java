@@ -1,5 +1,7 @@
 package barras;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -29,15 +31,15 @@ public class grupos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbtnGuardar = new javax.swing.JButton();
+        jbtnCancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        jtxtMatricula = new javax.swing.JTextField();
+        jtxtNombre = new javax.swing.JTextField();
+        jcbCarreras = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -46,19 +48,19 @@ public class grupos extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnGuardar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnGuardar.setText("Guardar");
+        jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnGuardarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancelar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnCancelar.setText("Cerrar");
+        jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnCancelarActionPerformed(evt);
             }
         });
 
@@ -68,9 +70,9 @@ public class grupos extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(jbtnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jbtnCancelar)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -78,8 +80,8 @@ public class grupos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jbtnGuardar)
+                    .addComponent(jbtnCancelar))
                 .addContainerGap())
         );
 
@@ -94,12 +96,17 @@ public class grupos extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Nombre:");
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtxtMatricula.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtxtNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ing. en tecnologías de la información", "Ing. industrial", "Lic. en mercadotecnia", "Lic. en administración" }));
+        jcbCarreras.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jcbCarreras.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ing. en Tecnologías de la Información", "Ing. Industrial", "Lic. en Mercadotecnia", "Lic. en Administración" }));
+        jcbCarreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCarrerasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -111,15 +118,15 @@ public class grupos extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2))
+                        .addComponent(jtxtMatricula))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE))))
+                            .addComponent(jtxtNombre)
+                            .addComponent(jcbCarreras, 0, 1, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -128,15 +135,15 @@ public class grupos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbCarreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -195,15 +202,45 @@ public class grupos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new inicio().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+        
+        if(jtxtMatricula.getText().equals("") || jtxtNombre.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Faltan datos !", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else{
+            
+            if(BD.existeAlumno(jtxtMatricula.getText(), Sesion.materiaActual)){
+                JOptionPane.showMessageDialog(this, "Alumno ya registrado !", "Atención", JOptionPane.WARNING_MESSAGE);
+                
+                jtxtMatricula.setText("");
+                jtxtNombre.setText("");
+            }
+            else{
+                BD.insertarAlumno(jtxtMatricula.getText(), jtxtNombre.getText(), (String) jcbCarreras.getSelectedItem(), Sesion.materiaActual);
+                JOptionPane.showMessageDialog(this, "Alumno registrado","Atención",JOptionPane.INFORMATION_MESSAGE);
+                
+                jtxtMatricula.setText("");
+                jtxtNombre.setText("");
+            }
+            
+        } 
+            
+    }//GEN-LAST:event_jbtnGuardarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new inicio().setVisible(true);
+    private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
+        
+        inicio i = new inicio();
+        i.setLocationRelativeTo(this);
+        i.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtnCancelarActionPerformed
+
+    private void jcbCarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCarrerasActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jcbCarrerasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,9 +277,6 @@ public class grupos extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -251,7 +285,10 @@ public class grupos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jbtnCancelar;
+    private javax.swing.JButton jbtnGuardar;
+    private javax.swing.JComboBox jcbCarreras;
+    private javax.swing.JTextField jtxtMatricula;
+    private javax.swing.JTextField jtxtNombre;
     // End of variables declaration//GEN-END:variables
 }

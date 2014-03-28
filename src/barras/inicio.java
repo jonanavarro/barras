@@ -1,6 +1,7 @@
 package barras;
 
 import javax.swing.ComboBoxModel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
@@ -25,6 +26,8 @@ public class inicio extends javax.swing.JFrame {
         
         String nombmat = BD.obtenerNombMateria((String) this.jcbConsultar.getModel().getElementAt(0));
         
+        Sesion.materiaActual = (String) this.jcbConsultar.getModel().getElementAt(0);
+        
   
         this.jlblMateria.setText(nombmat);
        
@@ -33,8 +36,8 @@ public class inicio extends javax.swing.JFrame {
         
         jlblMaestro.setText(Sesion.usuarioActual);
         jbtnGuardar.setEnabled(false);
-        jbtnAlta.setEnabled(false);
-        jbtnBaja.setEnabled(false);
+        jbtnAlta.setEnabled(true);
+        jbtnBaja.setEnabled(true);
         
     }
     
@@ -381,20 +384,27 @@ public class inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        eliminar elim = new eliminar();
-        elim.setLocationRelativeTo(this);
-        elim.setVisible(true);
+
+        if(Sesion.materiaActual == null){
+            JOptionPane.showMessageDialog(this, "No hay materias !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(Sesion.materiaActual.equals("")){
+            JOptionPane.showMessageDialog(this, "No hay materias !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            eliminar elim = new eliminar();
+            elim.setLocationRelativeTo(this);
+            elim.setVisible(true);
         
-        this.dispose();
-       
-        
+            this.dispose();   
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new editar().setVisible(true);
-        jbtnGuardar.setEnabled(true);
-        jbtnAlta.setEnabled(true);
-        jbtnBaja.setEnabled(true);
+        editar e = new editar();
+        e.setLocationRelativeTo(this);
+        e.setVisible(true);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -406,12 +416,27 @@ public class inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAltaActionPerformed
-        new grupos().setVisible(true);
-        dispose();
+
+        if(Sesion.materiaActual == null){
+            JOptionPane.showMessageDialog(this, "Agregue una materia !", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(Sesion.materiaActual.equals("")){
+            JOptionPane.showMessageDialog(this, "Agregue una materia !", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        else{
+            
+            grupos g = new grupos ();
+            g.setLocationRelativeTo(this);
+            g.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_jbtnAltaActionPerformed
 
     private void jbtnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBajaActionPerformed
-        new BajaAlumnos().setVisible(true);
+        BajaAlumnos b = new BajaAlumnos();
+        b.setLocationRelativeTo(this);
+        b.setVisible(true);
         dispose();
     }//GEN-LAST:event_jbtnBajaActionPerformed
 
@@ -442,7 +467,8 @@ public class inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombmat = BD.obtenerNombMateria((String)this.jcbConsultar.getSelectedItem());
         this.jlblMateria.setText(nombmat);
-        
+        Sesion.materiaActual = (String) this.jcbConsultar.getSelectedItem();
+               
     }//GEN-LAST:event_jcbConsultarActionPerformed
 
     

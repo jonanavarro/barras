@@ -168,24 +168,11 @@ public class principal extends javax.swing.JFrame {
 
     private void jbtnNuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoUsuarioActionPerformed
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         nusuario nuevo = new nusuario();
         nuevo.setLocationRelativeTo(this);
         nuevo.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_jbtnNuevoUsuarioActionPerformed
 
     private void jbtnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresarActionPerformed

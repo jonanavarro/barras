@@ -13,6 +13,7 @@ package barras;
 public class Sesion {
     
     static String usuarioActual = "";
+    static String materiaActual = "";
     
     
 }

@@ -25,7 +25,7 @@ public class BD {
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:sca.db");
-            JOptionPane.showMessageDialog(null, "Se hizo la conexion !");
+            //JOptionPane.showMessageDialog(null, "Se hizo la conexion !");
              
              
         } catch (SQLException ex) {
@@ -85,18 +85,20 @@ public class BD {
         
     }
     
-    public static boolean existeUsuario(String usuario){
+    public static boolean existeAlumno(String matricula, String idmateria){
         
-            PreparedStatement ps;
+        PreparedStatement ps;
             ResultSet rs;
             boolean valor =false;
             
             String consulta;
-            consulta = "SELECT maestro FROM usuarios WHERE maestro =?";
+            
+            consulta = "SELECT FK_Matricula FROM grupos WHERE FK_Matricula =? AND FK_IdMateria = ?";
             
         try{    
             ps = con.prepareStatement(consulta);
-            ps.setString(1, usuario);
+            ps.setString(1, matricula);
+            ps.setString(2, idmateria);
             rs = ps.executeQuery();
             
             if(rs.next()){
@@ -140,6 +142,187 @@ public class BD {
              Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
+    public static boolean alumnoRegistrado (String matricula){
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean valor =false;
+            
+        String consulta;
+        consulta = "SELECT matricula FROM alumnos WHERE matricula =?";
+            
+        try{    
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, matricula);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                valor = true;
+            }
+            else{
+                valor = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return valor;
+        
+    }
+    
+    
+    public static void insertarAlumno(String matricula, String nombre, String carrera, String idmateria){
+        PreparedStatement ps;
+        String consulta;
+        
+        if(alumnoRegistrado(matricula)){
+            
+            consulta = "INSERT INTO grupos VALUES(?,?)";
+            
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, idmateria);
+                ps.setString(2, matricula);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            consulta = "INSERT INTO alumnos VALUES(?,?,?)";
+            
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, matricula);
+                ps.setString(2, nombre);
+                ps.setString(3, carrera);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+            consulta = "INSERT INTO grupos VALUES(?,?)";
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, idmateria);
+                ps.setString(2, matricula);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public static boolean alumnoRegistradoOtrasMaterias(String matricula){
+        PreparedStatement ps;
+            ResultSet rs;
+            boolean valor =false;
+            int i=0;
+            String consulta;
+            consulta = "SELECT COUNT (*) FROM grupos WHERE FK_Matricula =?";
+            
+        try{    
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, matricula);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                i = (int) rs.getObject(1);
+                
+                if(i>1){
+                    valor = true;    
+                }
+                else{
+                    valor = false;
+                }
+                
+                
+            }
+            else{
+                valor = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return valor;
+        
+    }
+    
+    public static void eliminarAlumno(String matricula, String idmateria){
+        PreparedStatement ps;
+        String consulta;
+        
+        if(alumnoRegistradoOtrasMaterias(matricula)){
+            
+            consulta = "DELETE FROM grupos WHERE FK_IdMateria =? AND FK_Matricula = ?";
+            
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, idmateria);
+                ps.setString(2, matricula);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            consulta = "DELETE FROM grupos WHERE FK_IdMateria =? AND FK_Matricula = ?";
+            
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, idmateria);
+                ps.setString(2, matricula);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+            consulta = "DELETE FROM alumnos WHERE matricula= ?";
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1,matricula);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public static boolean existeUsuario(String usuario){
+        
+            PreparedStatement ps;
+            ResultSet rs;
+            boolean valor =false;
+            
+            String consulta;
+            consulta = "SELECT maestro FROM usuarios WHERE maestro =?";
+            
+        try{    
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                valor = true;
+            }
+            else{
+                valor = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return valor;
+    }
+    
+    
     
     public static boolean eliminarMateria(String idmateria, String maestro){
          
@@ -165,6 +348,17 @@ public class BD {
          }
         try {
             consulta = "DELETE FROM materias WHERE IdMateria = ?";
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, idmateria);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            valor = false;
+        }
+        
+        try {
+            consulta = "DELETE FROM grupos WHERE FK_IdMateria = ?";
             ps = con.prepareStatement(consulta);
             ps.setString(1, idmateria);
             ps.executeUpdate();
@@ -244,6 +438,40 @@ public class BD {
         return modelo;
     }
     
+    public static DefaultComboBoxModel obtenerNombAlumnos(String usuario, String idmateria){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        String consulta;
+        
+        consulta = "SELECT alumnos.nombre"
+                + " FROM alumnos INNER JOIN grupos ON alumnos.matricula = grupos.FK_Matricula"
+                + " INNER JOIN imparte ON grupos.FK_IdMateria = imparte.FK_IdMateria"
+                + " WHERE imparte.FK_maestro = ? AND imparte.FK_IdMateria = ?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, idmateria );
+            rs = ps.executeQuery();
+            
+            
+            
+            while(rs.next()){
+                
+                modelo.addElement(rs.getObject(1));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return modelo;
+    }
+    
+    
     public static String obtenerNombMateria(String idmat){
         
         PreparedStatement ps;
@@ -271,6 +499,62 @@ public class BD {
         }
         
         return i;
+    }
+    
+    public static String obtenerMatriculaAlumno(String nombre){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        String mat="";
+        
+        String consulta;
+        
+        consulta = "SELECT matricula FROM alumnos WHERE nombre=?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, nombre);
+            rs = ps.executeQuery();
+            
+            
+            if(rs.next()){
+                mat = rs.getString(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return mat;
+    }
+    
+    public static String obtenerCarreraAlumno(String nombre){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        String mat="";
+        
+        String consulta;
+        
+        consulta = "SELECT FK_IdCarrera FROM alumnos WHERE nombre=?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, nombre);
+            rs = ps.executeQuery();
+            
+            
+            if(rs.next()){
+                mat = rs.getString(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return mat;
     }
     
     public static String [] obtenerIdMateria(String usuario){
