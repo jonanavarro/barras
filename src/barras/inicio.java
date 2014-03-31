@@ -28,7 +28,9 @@ public class inicio extends javax.swing.JFrame {
         String horario = BD.obtenerHoraMateria(Sesion.usuarioActual, Sesion.materiaActual);
         
         
+        
         this.jtblLista.setModel(BD.obtenerLista(Sesion.usuarioActual, Sesion.materiaActual));
+        
   
         this.jlblMateria.setText(nombmat);
         
@@ -128,6 +130,7 @@ public class inicio extends javax.swing.JFrame {
                 "Alumno", "Fecha", "Promedio"
             }
         ));
+        jtblLista.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtblLista);
         if (jtblLista.getColumnModel().getColumnCount() > 0) {
             jtblLista.getColumnModel().getColumn(0).setMinWidth(90);
@@ -492,7 +495,10 @@ public class inicio extends javax.swing.JFrame {
         String nombmat = BD.obtenerNombMateria((String)this.jcbConsultar.getSelectedItem());
         this.jlblMateria.setText(nombmat);
         Sesion.materiaActual = (String) this.jcbConsultar.getSelectedItem();
-               
+        
+        String horario = BD.obtenerHoraMateria(Sesion.usuarioActual, Sesion.materiaActual);
+        this.jlblHorario.setText(horario);
+        this.jtblLista.setModel(BD.obtenerLista(Sesion.usuarioActual, Sesion.materiaActual));
     }//GEN-LAST:event_jcbConsultarActionPerformed
 
     

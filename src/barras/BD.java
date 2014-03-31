@@ -690,6 +690,40 @@ public class BD {
         
         return i;
     }
+    
+    public static String obtenerToleranciaMateria(String usuario, String materia){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        String i ="";
+        
+        String consulta;
+        
+        consulta = "SELECT tolerancia"
+                + " FROM materias " 
+                + " WHERE FK_Maestro = ? AND IdMateria = ?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            ps.setString(2, materia);
+            rs = ps.executeQuery();
+            
+            
+            if(rs.next()){
+                i = rs.getString(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return i;
+    }
+    
+    
+    
     public static String obtenerMatriculaAlumno(String nombre){
         
         PreparedStatement ps;
@@ -786,6 +820,7 @@ public class BD {
         } catch (SQLException ex) {
             Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         return modelo;
     }

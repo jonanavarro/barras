@@ -192,15 +192,38 @@ public class PantallaInicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat formatoDia = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat formatoDia = new SimpleDateFormat("dd/MM/yyyy");
         String fecha = formatoDia.format(new Date());
+        int h = 0, ha = 0;
+        int m = 0, ma = 0;
+        int t = 0;
+        int horamateria, horaactual;
+        int toleranciamat;
+     
         String asistencia ="";
         String horaMateria= BD.obtenerHoraMateria(Sesion.usuarioActual, Sesion.materiaActual);
+        String tolerancia = BD.obtenerToleranciaMateria(Sesion.usuarioActual, Sesion.materiaActual);
+
+        h = Integer.parseInt(horaMateria.substring(0, 2));
+        m = Integer.parseInt(horaMateria.substring(4, 5));
         
-        System.out.println(horaMateria);
+        t = Integer.parseInt(tolerancia.substring(4, 5));
+     
+        horamateria = (h*60)+ m + t; 
         
         SimpleDateFormat formatoHora = new SimpleDateFormat("kk:mm");
         String hora = formatoHora.format(new Date());
+        
+        ha = Integer.parseInt(hora.substring(0, 2));
+        ma = Integer.parseInt(hora.substring(4, 5));
+        horaactual = (ha*60)+ma;
+        
+        if(horaactual<=horamateria){
+            asistencia = "O";
+        }
+        else {
+            asistencia = "X";
+        }
         
         if(jtxtMatricula.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Ingresa datos !", "Atención", JOptionPane.WARNING_MESSAGE);
@@ -257,9 +280,11 @@ public class PantallaInicio extends javax.swing.JFrame {
             }
             else{
                 if(BD.existeEnGrupo(jtxtMatricula.getText(), Sesion.materiaActual, Sesion.usuarioActual)){
+                    
+                    
+                    
+                    
                     BD.insertarLista(Sesion.materiaActual, jtxtMatricula.getText(), "", fecha, Sesion.usuarioActual,hora,asistencia);
-                    System.out.println("Bienvenido "+jtxtMatricula.getText());
-                
                     
                     this.jlblBienvenido.setText("Bienvenido !");
                     this.jlblNombre.setText(BD.obtenerNombAlumno(jtxtMatricula.getText()) );
