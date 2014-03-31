@@ -6,6 +6,12 @@
 
 package barras;
 
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author efra1323
@@ -31,11 +37,13 @@ public class PantallaInicio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jbtnListo = new javax.swing.JButton();
+        jlblNombre = new javax.swing.JLabel();
+        jlblBienvenido = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtxtNombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jtxtMatricula = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,12 +58,22 @@ public class PantallaInicio extends javax.swing.JFrame {
             }
         });
 
+        jlblNombre.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jlblNombre.setForeground(new java.awt.Color(51, 0, 255));
+
+        jlblBienvenido.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jlblBienvenido.setForeground(new java.awt.Color(0, 153, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jlblBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnListo)
                 .addContainerGap())
         );
@@ -63,7 +81,10 @@ public class PantallaInicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbtnListo)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbtnListo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblBienvenido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -72,20 +93,30 @@ public class PantallaInicio extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("Alumno:");
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtxtNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Matricula:");
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtxtMatricula.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jtxtMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtxtMatriculaActionPerformed(evt);
+            }
+        });
+        jtxtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtxtMatriculaKeyPressed(evt);
             }
         });
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton2.setText("Registrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -93,30 +124,31 @@ public class PantallaInicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36)
+                        .addComponent(jtxtMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(30, 30, 30)
+                        .addComponent(jtxtNombre)))
+                .addGap(10, 10, 10)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
-                    .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtxtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap())
         );
@@ -145,9 +177,9 @@ public class PantallaInicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jtxtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jtxtMatriculaActionPerformed
 
     private void jbtnListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnListoActionPerformed
         // TODO add your handling code here:
@@ -157,6 +189,96 @@ public class PantallaInicio extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_jbtnListoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat formatoDia = new SimpleDateFormat("yyyy/MM/dd");
+        String fecha = formatoDia.format(new Date());
+        String asistencia ="";
+        String horaMateria= BD.obtenerHoraMateria(Sesion.usuarioActual, Sesion.materiaActual);
+        
+        System.out.println(horaMateria);
+        
+        SimpleDateFormat formatoHora = new SimpleDateFormat("kk:mm");
+        String hora = formatoHora.format(new Date());
+        
+        if(jtxtMatricula.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Ingresa datos !", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            
+            //System.out.println(BD.yaRegistradoLista(Sesion.materiaActual,jtxtMatricula.getText(), fecha, Sesion.usuarioActual));
+            if(BD.yaRegistradoLista(Sesion.materiaActual,jtxtMatricula.getText(), fecha, Sesion.usuarioActual)){
+                JOptionPane.showMessageDialog(this, "Ya registrado !", "Atención", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                if(BD.existeEnGrupo(jtxtMatricula.getText(), Sesion.materiaActual , Sesion.usuarioActual)){
+                    BD.insertarLista(Sesion.materiaActual, jtxtMatricula.getText(), "", fecha, Sesion.usuarioActual,hora, asistencia);
+                
+                    this.jlblBienvenido.setText("Bienvenido ! ");
+                    this.jlblNombre.setText(BD.obtenerNombAlumno(jtxtMatricula.getText()) );
+                    this.jtxtMatricula.setText("");
+                    this.jtxtMatricula.requestFocus();
+                    
+                }
+                
+                else{
+                    JOptionPane.showMessageDialog(this, "Alumno no dado de alta en esta materia","Atención",JOptionPane.ERROR_MESSAGE);
+                    this.jtxtMatricula.setText("");
+                    this.jtxtMatricula.requestFocus();
+                }
+                
+            }
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jtxtMatriculaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtMatriculaKeyPressed
+        // TODO add your handling code here:
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            SimpleDateFormat formatoDia = new SimpleDateFormat("yyyy/MM/dd");
+            String fecha = formatoDia.format(new Date());
+            String asistencia="";
+        
+        SimpleDateFormat formatoHora = new SimpleDateFormat("kk:mm");
+        String hora = formatoHora.format(new Date());
+        
+        if(jtxtMatricula.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Ingresa datos !", "Atención", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            
+            //System.out.println(BD.yaRegistradoLista(Sesion.materiaActual,jtxtMatricula.getText(), fecha, Sesion.usuarioActual));
+            if(BD.yaRegistradoLista(Sesion.materiaActual,jtxtMatricula.getText(), fecha, Sesion.usuarioActual)){
+                JOptionPane.showMessageDialog(this, "Ya registrado !", "Atención", JOptionPane.ERROR_MESSAGE);
+                this.jtxtMatricula.setText("");
+                this.jtxtMatricula.requestFocus();
+            }
+            else{
+                if(BD.existeEnGrupo(jtxtMatricula.getText(), Sesion.materiaActual, Sesion.usuarioActual)){
+                    BD.insertarLista(Sesion.materiaActual, jtxtMatricula.getText(), "", fecha, Sesion.usuarioActual,hora,asistencia);
+                    System.out.println("Bienvenido "+jtxtMatricula.getText());
+                
+                    
+                    this.jlblBienvenido.setText("Bienvenido !");
+                    this.jlblNombre.setText(BD.obtenerNombAlumno(jtxtMatricula.getText()) );
+                    this.jtxtMatricula.setText("");
+                    this.jtxtMatricula.requestFocus();
+                    
+                }
+                
+                else{
+                    JOptionPane.showMessageDialog(this, "Alumno no dado de alta en esta materia","Atención",JOptionPane.ERROR_MESSAGE);
+                    this.jtxtMatricula.setText("");
+                    this.jtxtMatricula.requestFocus();
+                }
+                
+            }
+            
+        }
+        }
+    }//GEN-LAST:event_jtxtMatriculaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -199,8 +321,10 @@ public class PantallaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbtnListo;
+    private javax.swing.JLabel jlblBienvenido;
+    private javax.swing.JLabel jlblNombre;
+    private javax.swing.JTextField jtxtMatricula;
+    private javax.swing.JTextField jtxtNombre;
     // End of variables declaration//GEN-END:variables
 }

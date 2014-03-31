@@ -13,6 +13,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Jonathan
@@ -114,6 +115,39 @@ public class BD {
         return valor;
     }
     
+    public static boolean existeEnGrupo(String matricula, String idmateria, String usuario){
+        
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean valor =false;
+            
+        String consulta;
+            
+        consulta = "SELECT FK_Matricula FROM grupos WHERE FK_Matricula =? AND FK_IdMateria = ? AND FK_maestro = ? ";
+            
+        try{    
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, matricula);
+            ps.setString(2, idmateria);
+            ps.setString(3, usuario);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                valor = true;
+            }
+            else{
+                valor = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return valor;
+    }
+    
+    
+    
+    
     public static void insertarMateria(String idmateria, String nombre, String modalidad,
                                        String entrada, String tolerancia, String usuario){
          
@@ -122,13 +156,14 @@ public class BD {
        
          try {
              
-             consulta = "INSERT INTO materias VALUES(?,?,?,?,?)";
+             consulta = "INSERT INTO materias VALUES(?,?,?,?,?,?)";
              ps = con.prepareStatement(consulta);
              ps.setString(1, idmateria);
              ps.setString(2, nombre);
              ps.setString(3, modalidad);
              ps.setString(4, entrada);
              ps.setString(5, tolerancia);
+             ps.setString(6, usuario);
              ps.executeUpdate();
              ps.close();
              
@@ -171,18 +206,19 @@ public class BD {
     }
     
     
-    public static void insertarAlumno(String matricula, String nombre, String carrera, String idmateria){
+    public static void insertarAlumno(String matricula, String nombre, String carrera, String idmateria, String maestro){
         PreparedStatement ps;
         String consulta;
         
         if(alumnoRegistrado(matricula)){
             
-            consulta = "INSERT INTO grupos VALUES(?,?)";
+            consulta = "INSERT INTO grupos VALUES(?,?,?)";
             
             try {
                 ps = con.prepareStatement(consulta);
                 ps.setString(1, idmateria);
                 ps.setString(2, matricula);
+                ps.setString(3, maestro);
                 ps.executeUpdate();
             
             } catch (SQLException ex) {
@@ -203,11 +239,12 @@ public class BD {
                 Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-            consulta = "INSERT INTO grupos VALUES(?,?)";
+            consulta = "INSERT INTO grupos VALUES(?,?,?)";
             try {
                 ps = con.prepareStatement(consulta);
                 ps.setString(1, idmateria);
                 ps.setString(2, matricula);
+                ps.setString(3, maestro);
                 ps.executeUpdate();
             
             } catch (SQLException ex) {
@@ -252,31 +289,60 @@ public class BD {
         
     }
     
-    public static void eliminarAlumno(String matricula, String idmateria){
+    public static void eliminarAlumno(String matricula, String idmateria, String maestro){
         PreparedStatement ps;
         String consulta;
         
         if(alumnoRegistradoOtrasMaterias(matricula)){
             
-            consulta = "DELETE FROM grupos WHERE FK_IdMateria =? AND FK_Matricula = ?";
+            consulta = "DELETE FROM grupos WHERE FK_IdMateria =? AND FK_Matricula = ? AND FK_maestro = ?";
             
             try {
                 ps = con.prepareStatement(consulta);
                 ps.setString(1, idmateria);
                 ps.setString(2, matricula);
+                ps.setString(3, maestro);
                 ps.executeUpdate();
             
             } catch (SQLException ex) {
                 Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else{
-            consulta = "DELETE FROM grupos WHERE FK_IdMateria =? AND FK_Matricula = ?";
+            
+            consulta = "DELETE FROM listas WHERE FK_IdMateria =? AND FK_Matricula =? AND FK_Maestro =?";
             
             try {
                 ps = con.prepareStatement(consulta);
                 ps.setString(1, idmateria);
                 ps.setString(2, matricula);
+                ps.setString(3, maestro);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        else{
+            consulta = "DELETE FROM grupos WHERE FK_IdMateria =? AND FK_Matricula = ? AND FK_maestro=?";
+            
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, idmateria);
+                ps.setString(2, matricula);
+                ps.setString(2, maestro);
+                ps.executeUpdate();
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            consulta = "DELETE FROM listas WHERE FK_IdMateria =? AND FK_Matricula = ? AND FK_Maestro=?";
+            
+            try {
+                ps = con.prepareStatement(consulta);
+                ps.setString(1, idmateria);
+                ps.setString(2, matricula);
+                ps.setString(3, maestro);
                 ps.executeUpdate();
             
             } catch (SQLException ex) {
@@ -324,7 +390,7 @@ public class BD {
     
     
     
-    public static boolean eliminarMateria(String idmateria, String maestro){
+    public static boolean eliminarMateria(String idmateria, String maestro, String horaMateria){
          
          PreparedStatement ps;
          String consulta;
@@ -338,18 +404,17 @@ public class BD {
              ps.setString(1, idmateria);
              ps.setString(2, maestro);
              ps.executeUpdate();
-             
-             consulta = "DELETE FROM materias WHERE IdMateria = ?";
-             
-             
+               
          } catch (SQLException ex) {
              Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
              valor = false;
          }
         try {
-            consulta = "DELETE FROM materias WHERE IdMateria = ?";
+            consulta = "DELETE FROM materias WHERE IdMateria = ? AND FK_maestro =? AND HoraEntrada = ?";
             ps = con.prepareStatement(consulta);
             ps.setString(1, idmateria);
+            ps.setString(2, maestro);
+            ps.setString(3, horaMateria);
             ps.executeUpdate();
             
         } catch (SQLException ex) {
@@ -370,6 +435,71 @@ public class BD {
          
         return valor;
                  
+    }
+    
+    /*public static DefaultTableModel obtenerLista(String usuario, String idmateria){
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        
+        modelo.
+        
+        return modelo;
+    }
+    */
+    
+    public static void insertarLista (String idmateria, String matricula, String periodo, String fecha, String maestro,String hora, String asistencia){
+        PreparedStatement ps;
+        String consulta;
+       
+        try {
+             
+             consulta = "INSERT INTO listas VALUES(?,?,?,?,?,?,?)";
+             ps = con.prepareStatement(consulta);
+             ps.setString(1, idmateria);
+             ps.setString(2, matricula);
+             ps.setString(3, periodo);
+             ps.setString(4, fecha);
+             ps.setString(5, maestro);
+             ps.setString(6, hora);
+             ps.setString(7, asistencia);
+             ps.executeUpdate();
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+    }
+    
+    public static boolean yaRegistradoLista (String materia,String matricula, String fecha, String maestro){
+        PreparedStatement ps;
+            ResultSet rs;
+            boolean valor =false;
+            
+            String consulta;
+            consulta = "SELECT FK_Matricula FROM listas "
+                    + "WHERE FK_IdMateria =? AND FK_Matricula =? AND Fecha = ? AND FK_Maestro=?";
+            
+        try{    
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, materia);
+            ps.setString(2, matricula);
+            ps.setString(3, fecha);
+            ps.setString(4, maestro);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                valor = true;
+            }
+            else{
+                valor = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return valor;
+    
     }
     
     public static boolean materiaDuplicada(String idMateria, String maestro){
@@ -413,10 +543,9 @@ public class BD {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         
         String consulta;
-        consulta = "SELECT materias.IdMateria"
-                + " FROM materias INNER JOIN imparte ON materias.IdMateria = imparte.FK_idMateria"
-                + " INNER JOIN usuarios ON usuarios.maestro = imparte.FK_Maestro"
-                + " WHERE usuarios.maestro = ?";
+        consulta = "SELECT imparte.FK_IdMateria"
+                + " FROM imparte"
+                + " WHERE imparte.FK_maestro = ?";
             
         try{    
             
@@ -448,13 +577,14 @@ public class BD {
         consulta = "SELECT alumnos.nombre"
                 + " FROM alumnos INNER JOIN grupos ON alumnos.matricula = grupos.FK_Matricula"
                 + " INNER JOIN imparte ON grupos.FK_IdMateria = imparte.FK_IdMateria"
-                + " WHERE imparte.FK_maestro = ? AND imparte.FK_IdMateria = ?";
+                + " WHERE imparte.FK_maestro = ? AND imparte.FK_IdMateria = ? AND grupos.FK_maestro = ?";
             
         try{    
             
             ps = con.prepareStatement(consulta);
             ps.setString(1, usuario );
             ps.setString(2, idmateria );
+            ps.setString(3, usuario );
             rs = ps.executeQuery();
             
             
@@ -501,6 +631,65 @@ public class BD {
         return i;
     }
     
+    public static String obtenerNombAlumno(String matricula){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        String i ="";
+        
+        String consulta;
+        
+        consulta = "SELECT nombre"
+                + " FROM alumnos WHERE matricula = ?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, matricula);
+            rs = ps.executeQuery();
+            
+            
+            if(rs.next()){
+                i = rs.getString(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return i;
+    }
+    
+    public static String obtenerHoraMateria(String usuario, String materia){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        String i ="";
+        
+        String consulta;
+        
+        consulta = "SELECT HoraEntrada"
+                + " FROM materias " 
+                + " WHERE FK_Maestro = ? AND IdMateria = ?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            ps.setString(2, materia);
+            rs = ps.executeQuery();
+            
+            
+            if(rs.next()){
+                i = rs.getString(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return i;
+    }
     public static String obtenerMatriculaAlumno(String nombre){
         
         PreparedStatement ps;
@@ -556,6 +745,51 @@ public class BD {
         
         return mat;
     }
+    
+    public static DefaultTableModel obtenerLista(String usuario, String materia){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        String consulta;
+        consulta = "SELECT  alumnos.nombre, listas.Fecha, listas.Hora, listas.Asistencia"
+                + " FROM alumnos INNER JOIN listas ON alumnos.matricula = listas.FK_Matricula"
+                
+                + " WHERE listas.FK_Maestro = ? AND listas.FK_IdMateria = ?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, materia );
+            
+            rs = ps.executeQuery();
+         
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Hora");
+            modelo.addColumn("Asistencia");
+            
+            String []datos = new String [4];
+            
+            while(rs.next()){
+                
+                datos[0] = (String) rs.getObject(1);
+                datos[1] = (String) rs.getObject(2);
+                datos[2] = (String) rs.getObject(3);
+                datos[3] = (String) rs.getObject(4);
+         
+                modelo.addRow(datos);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return modelo;
+    }
+    
     
     public static String [] obtenerIdMateria(String usuario){
         

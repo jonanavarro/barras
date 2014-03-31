@@ -188,7 +188,7 @@ public class BajaAlumnos extends javax.swing.JFrame {
            dispose();
        }
        else{
-           BD.eliminarAlumno(BD.obtenerMatriculaAlumno((String) this.jcbNombre.getSelectedItem()), Sesion.materiaActual);
+           BD.eliminarAlumno(BD.obtenerMatriculaAlumno((String) this.jcbNombre.getSelectedItem()), Sesion.materiaActual,Sesion.usuarioActual);
         
            JOptionPane.showMessageDialog(this, "Alumno Borrado !","Atención",JOptionPane.INFORMATION_MESSAGE);
            inicio llamada = new inicio();

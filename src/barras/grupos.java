@@ -210,14 +210,14 @@ public class grupos extends javax.swing.JFrame {
         
         else{
             
-            if(BD.existeAlumno(jtxtMatricula.getText(), Sesion.materiaActual)){
+            if(BD.existeEnGrupo(jtxtMatricula.getText(), Sesion.materiaActual, Sesion.usuarioActual)){
                 JOptionPane.showMessageDialog(this, "Alumno ya registrado !", "Atención", JOptionPane.WARNING_MESSAGE);
                 
                 jtxtMatricula.setText("");
                 jtxtNombre.setText("");
             }
             else{
-                BD.insertarAlumno(jtxtMatricula.getText(), jtxtNombre.getText(), (String) jcbCarreras.getSelectedItem(), Sesion.materiaActual);
+                BD.insertarAlumno(jtxtMatricula.getText(), jtxtNombre.getText(), (String) jcbCarreras.getSelectedItem(), Sesion.materiaActual,Sesion.usuarioActual);
                 JOptionPane.showMessageDialog(this, "Alumno registrado","Atención",JOptionPane.INFORMATION_MESSAGE);
                 
                 jtxtMatricula.setText("");

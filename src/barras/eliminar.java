@@ -195,7 +195,7 @@ public class eliminar extends javax.swing.JFrame {
             
         }
         else{
-            if(BD.eliminarMateria((String)this.jcbIdMateria.getSelectedItem(), Sesion.usuarioActual)){
+            if(BD.eliminarMateria((String)this.jcbIdMateria.getSelectedItem(), Sesion.usuarioActual,BD.obtenerHoraMateria(Sesion.usuarioActual, Sesion.materiaActual))){
                 JOptionPane.showMessageDialog(this, "Se borró la materia !","Borrar",JOptionPane.INFORMATION_MESSAGE);
                 
                 this.dispose();

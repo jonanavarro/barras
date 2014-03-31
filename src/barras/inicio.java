@@ -20,20 +20,20 @@ public class inicio extends javax.swing.JFrame {
     public inicio() {
         super("Lista");
         initComponents();
-        //jcbConsultar.setModel(obtenerListaMaterias(Sesion.usuarioActual));
-        
+        //System.out.println(Sesion.usuarioActual);
         this.jcbConsultar.setModel(BD.obtenerMaterias(Sesion.usuarioActual));
-        
-        String nombmat = BD.obtenerNombMateria((String) this.jcbConsultar.getModel().getElementAt(0));
-        
+        //jcbConsultar.setModel(obtenerListaMaterias(Sesion.usuarioActual));
         Sesion.materiaActual = (String) this.jcbConsultar.getModel().getElementAt(0);
+        String nombmat = BD.obtenerNombMateria((String) this.jcbConsultar.getModel().getElementAt(0));
+        String horario = BD.obtenerHoraMateria(Sesion.usuarioActual, Sesion.materiaActual);
         
+        
+        this.jtblLista.setModel(BD.obtenerLista(Sesion.usuarioActual, Sesion.materiaActual));
   
         this.jlblMateria.setText(nombmat);
+        
+        this.jlblHorario.setText(horario);
        
-        
-        
-        
         jlblMaestro.setText(Sesion.usuarioActual);
         jbtnGuardar.setEnabled(false);
         jbtnAlta.setEnabled(true);
@@ -64,7 +64,7 @@ public class inicio extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jlblMaestro = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtblLista = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jbtnGuardar = new javax.swing.JButton();
@@ -72,6 +72,8 @@ public class inicio extends javax.swing.JFrame {
         jbtnPase = new javax.swing.JButton();
         jbtnBaja = new javax.swing.JButton();
         jbtnAlta = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jlblHorario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -89,7 +91,7 @@ public class inicio extends javax.swing.JFrame {
         jLabel2.setText("Materia:");
 
         jlblMateria.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jlblMateria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jlblMateria.setForeground(new java.awt.Color(0, 102, 0));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Tutor:");
@@ -97,9 +99,9 @@ public class inicio extends javax.swing.JFrame {
         jlblMaestro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jlblMaestro.setForeground(new java.awt.Color(0, 51, 255));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 153));
-        jTable1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 204)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtblLista.setBackground(new java.awt.Color(255, 255, 153));
+        jtblLista.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 204)));
+        jtblLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -126,12 +128,12 @@ public class inicio extends javax.swing.JFrame {
                 "Alumno", "Fecha", "Promedio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(90);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(90);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(90);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(90);
+        jScrollPane1.setViewportView(jtblLista);
+        if (jtblLista.getColumnModel().getColumnCount() > 0) {
+            jtblLista.getColumnModel().getColumn(0).setMinWidth(90);
+            jtblLista.getColumnModel().getColumn(0).setMaxWidth(90);
+            jtblLista.getColumnModel().getColumn(2).setMinWidth(90);
+            jtblLista.getColumnModel().getColumn(2).setMaxWidth(90);
         }
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -214,6 +216,12 @@ public class inicio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setText("Hora:");
+
+        jlblHorario.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jlblHorario.setForeground(new java.awt.Color(0, 102, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -230,7 +238,11 @@ public class inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jlblMaestro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jlblMaestro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -242,7 +254,9 @@ public class inicio extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(jlblMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jlblHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -441,11 +455,21 @@ public class inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnBajaActionPerformed
 
     private void jbtnPaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPaseActionPerformed
-        PantallaInicio p = new PantallaInicio();
-        p.setLocationRelativeTo(this);
-        p.setVisible(true);
+        if(Sesion.materiaActual == null){
+            JOptionPane.showMessageDialog(this, "No hay materias !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
         
-        dispose();
+        else if(Sesion.materiaActual.equals("")){
+            JOptionPane.showMessageDialog(this, "No hay materias !","Atención",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            PantallaInicio p = new PantallaInicio();
+            p.setLocationRelativeTo(this);
+            p.setVisible(true);
+        
+            dispose();
+        }
+        
     }//GEN-LAST:event_jbtnPaseActionPerformed
 
     private void jbtnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCerrarSesionActionPerformed
@@ -513,13 +537,13 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbtnAlta;
     private javax.swing.JButton jbtnBaja;
     private javax.swing.JButton jbtnCerrarSesion;
@@ -527,7 +551,9 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton jbtnImprimir;
     private javax.swing.JButton jbtnPase;
     private javax.swing.JComboBox jcbConsultar;
+    private javax.swing.JLabel jlblHorario;
     private javax.swing.JLabel jlblMaestro;
     private javax.swing.JLabel jlblMateria;
+    private javax.swing.JTable jtblLista;
     // End of variables declaration//GEN-END:variables
 }
