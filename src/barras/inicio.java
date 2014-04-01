@@ -40,6 +40,7 @@ public class inicio extends javax.swing.JFrame {
         jbtnGuardar.setEnabled(false);
         jbtnAlta.setEnabled(true);
         jbtnBaja.setEnabled(true);
+        jbtnEditar.setEnabled(false);
         
     }
     
@@ -68,7 +69,7 @@ public class inicio extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblLista = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        jbtnEditar = new javax.swing.JButton();
         jbtnGuardar = new javax.swing.JButton();
         jbtnImprimir = new javax.swing.JButton();
         jbtnPase = new javax.swing.JButton();
@@ -141,11 +142,11 @@ public class inicio extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton4.setText("Editar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbtnEditar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnEditar.setText("Editar");
+        jbtnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbtnEditarActionPerformed(evt);
             }
         });
 
@@ -190,7 +191,7 @@ public class inicio extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4)
+                .addComponent(jbtnEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -214,7 +215,7 @@ public class inicio extends javax.swing.JFrame {
                         .addComponent(jbtnImprimir)
                         .addComponent(jbtnPase))
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4)
+                        .addComponent(jbtnEditar)
                         .addComponent(jbtnGuardar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -417,12 +418,12 @@ public class inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarActionPerformed
         editar e = new editar();
         e.setLocationRelativeTo(this);
         e.setVisible(true);
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbtnEditarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         mat m = new mat();
@@ -539,7 +540,6 @@ public class inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -553,6 +553,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton jbtnAlta;
     private javax.swing.JButton jbtnBaja;
     private javax.swing.JButton jbtnCerrarSesion;
+    private javax.swing.JButton jbtnEditar;
     private javax.swing.JButton jbtnGuardar;
     private javax.swing.JButton jbtnImprimir;
     private javax.swing.JButton jbtnPase;

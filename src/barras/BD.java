@@ -780,7 +780,7 @@ public class BD {
         return mat;
     }
     
-    public static DefaultTableModel obtenerLista(String usuario, String materia){
+    /*public static DefaultTableModel obtenerLista(String usuario, String materia){
         
         PreparedStatement ps;
         ResultSet rs = null;
@@ -823,8 +823,178 @@ public class BD {
         
         
         return modelo;
-    }
+    }*/
     
+    public static DefaultTableModel obtenerLista(String usuario, String materia){
+        
+        PreparedStatement ps;
+        ResultSet rs = null;
+        DefaultTableModel modelo = new DefaultTableModel();
+        String consulta;
+        int m =0;
+        String []  fechas = null;
+        
+        consulta = "SELECT COUNT (*)"
+                + " FROM listas"
+                + " WHERE FK_Maestro = ? AND FK_IdMateria = ?";
+        try {
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, materia );
+            rs = ps.executeQuery();
+            
+            modelo.addColumn("Nombre");
+            
+            while (rs.next()){
+                m = (int) rs.getObject(1);
+            }
+            
+            fechas = new String[m];
+            
+            consulta = "SELECT DISTINCT Fecha "
+                + " FROM listas"
+                + " WHERE FK_Maestro = ? AND FK_IdMateria = ?"
+                    + " ORDER BY Fecha DESC";
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, materia );
+            rs = ps.executeQuery();
+            
+            int n =0;
+            while (rs.next()){
+                fechas[n] = (String)rs.getObject(1);
+                modelo.addColumn(fechas[n]);
+                n++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+        if(fechas == null){
+            return modelo;
+        }
+            
+            consulta = "SELECT COUNT (*)"
+                + " FROM grupos"
+                + " WHERE FK_Maestro = ? AND FK_IdMateria = ?";
+        try {
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, materia );
+            rs = ps.executeQuery();
+            
+            int longitudal = (int) rs.getObject(1);
+                    
+            String [] alumnos = new String [longitudal];
+            String [] nombalumnos = new String [longitudal];
+            
+            consulta = "SELECT alumnos.Matricula, alumnos.nombre"
+                + " FROM grupos INNER JOIN alumnos ON grupos.FK_Matricula = alumnos.Matricula "
+                + " WHERE FK_Maestro = ? AND FK_IdMateria = ?";
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, materia );
+            rs = ps.executeQuery();
+            
+            int k =0;
+            while (rs.next()){
+                
+                alumnos [k] = (String) rs.getObject(1);
+                nombalumnos [k] = (String) rs.getObject(2);
+                //System.out.println(alumnos[k]);
+                k++;
+            }
+           
+            
+            for(int i = 0;i <alumnos.length; i++){
+                
+                String [] row = new String [fechas.length+1];
+                
+                row[0] = nombalumnos[i];
+                
+                for(int j = 0; j<fechas.length; j++){
+                    
+                    consulta = "SELECT Asistencia "
+                            + " FROM listas"
+                            + " WHERE FK_Maestro = ? AND FK_IdMateria = ? AND FK_Matricula =? AND Fecha =?";
+                    
+                    ps = con.prepareStatement(consulta);
+                    ps.setString(1, usuario );
+                    ps.setString(2, materia );
+                    ps.setString(3, alumnos [i]);
+                    //System.out.println(alumnos[i]);
+                    //System.out.println(fechas[j]);
+                    ps.setString(4, fechas [j]);
+                    rs = ps.executeQuery();
+                    
+                    if(rs.next()){
+                        do{
+                            row[j+1] = (String) rs.getObject(1);
+                        }
+                        while (rs.next());
+                    }
+                    
+                    else{
+                        row[j+1] = "/";
+                        
+                    }
+                    
+                    
+                    
+                } modelo.addRow(row);
+                
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+       
+        
+        
+        
+ 
+      /*
+        consulta = "SELECT  alumnos.nombre, listas.Fecha, listas.Hora, listas.Asistencia"
+                + " FROM alumnos INNER JOIN listas ON alumnos.matricula = listas.FK_Matricula"
+                
+                + " WHERE listas.FK_Maestro = ? AND listas.FK_IdMateria = ?";
+            
+        try{    
+            
+            ps = con.prepareStatement(consulta);
+            ps.setString(1, usuario );
+            ps.setString(2, materia );
+            
+            rs = ps.executeQuery();
+         
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Fecha");
+            modelo.addColumn("Hora");
+            modelo.addColumn("Asistencia");
+            
+            String []datos = new String [4];
+            
+            while(rs.next()){
+                
+                datos[0] = (String) rs.getObject(1);
+                datos[1] = (String) rs.getObject(2);
+                datos[2] = (String) rs.getObject(3);
+                datos[3] = (String) rs.getObject(4);
+         
+                modelo.addRow(datos);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        */
+        return modelo;
+    }
     
     public static String [] obtenerIdMateria(String usuario){
         
